@@ -17,9 +17,9 @@ parameters = {
     "units": UNITS
 }
 response = requests.get(QUERY, parameters)
-print(response.status_code)
+#print(response.status_code)
 
-res_dict = response.json()
-#print(res_dict)["precipitation"]
+weather_info = response.json()
+#print(weather_info)
 #print(res_dict["weather"][0]["main"])
-print(json.dumps(res_dict, sort_keys=True, indent=4))
+#print(json.dumps(res_dict, sort_keys=True, indent=4))

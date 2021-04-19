@@ -6,6 +6,16 @@
 
 
 {% block body %} 
-<h1> Update color pls</h1>
-it works!
+<h1> Formula 1 Weather</h1>
+The <i>{{data["race"]["race_name"]}}</i>  starts in 
+<br> 
+<b>{{data["race"]["time_to_race"]}}</b>
+<br>
+The weather in <i>{{data["race"]["race_location"]["locality"]}}, {{data["race"]["race_location"]["country"]}} </i> is currently: 
+<br>
+<!-- {{data["weather"]}} -->
+{{data["weather"]["weather"][0]["icon"]}}
+{{data["weather"]["weather"][0]["main"]}} with {{data["weather"]["weather"][0]["description"]}}
+<br>
+<img src="http://openweathermap.org/img/wn/01d@4x.png" alt="Current weather icon">
 {% endblock %}

@@ -1,12 +1,13 @@
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: xx-large;
-    color: aqua;
+    color: white;
+    text-align: center;
+    background-color: black;
 }
 
 h1 {
-    border: 2px #eee solid;
-    color: brown;
+    color: darkgreen;
     text-align: center;
     padding: 10px;
 }
