@@ -10,7 +10,7 @@ def f1_api_call():
 
     res_dict = response.json()
     next_race = res_dict["MRData"]["RaceTable"]["Races"][0]
-    #print(json.dumps(next_race, sort_keys=True, indent=4))
+    print(json.dumps(next_race, sort_keys=True, indent=4))
     return next_race
 
 def race_info_getter(next_race):
@@ -27,11 +27,5 @@ def race_info_getter(next_race):
     race_location = next_race["Circuit"]["Location"]
 
     race_info =  {"time_to_race": time_to_race, "race_name": race_name, "race_location": race_location}
-    #print(race_info)
-    #print(str(race_info["time_to_race"]).split(".")[0])
+    print(race_info)
     return race_info
-
-#if __name__== "__main__":
-next_race = f1_api_call()
-race_info = race_info_getter(next_race)
-

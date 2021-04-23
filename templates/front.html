@@ -6,7 +6,12 @@
 
 
 {% block body %} 
-<h1> Formula 1 Weather</h1>
+<ul id="menu">
+    <!-- <li><img class="f1logo" src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-0.png" alt="F1 logo"></li>-->
+    <li><img class="f1logo" src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-5-3.png" alt="F1 logo"></li>
+    <li><h1> Formula 1 Weather</h1></li>
+</ul>
+
 The <i>{{data["race"]["race_name"]}}</i>  starts in 
 <br> 
 <b>{{data["race"]["time_to_race"]}}</b>
@@ -17,5 +22,5 @@ The weather in <i>{{data["race"]["race_location"]["locality"]}}, {{data["race"][
 {{data["weather"]["weather"][0]["icon"]}}
 {{data["weather"]["weather"][0]["main"]}} with {{data["weather"]["weather"][0]["description"]}}
 <br>
-<img src="http://openweathermap.org/img/wn/01d@4x.png" alt="Current weather icon">
+<img src="http://openweathermap.org/img/wn/02d@4x.png" alt="Current weather icon">
 {% endblock %}
