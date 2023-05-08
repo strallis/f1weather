@@ -1,28 +1,42 @@
 import requests
 import json
-from api_keys import OPENWEATHER_API_KEY
-import f1_season_call
+import os
 
-next_race = f1_season_call.f1_api_call()
-race_info = f1_season_call.race_info_getter(next_race)
-#print(race_info)
-API_KEY = OPENWEATHER_API_KEY
-COORDINATES = race_info["race_location"]
-UNITS = 'metric'
-QUERY = 'https://api.openweathermap.org/data/2.5/weather'
+from race_call import get_race_info
 
-parameters = {
-    "lat": COORDINATES["lat"],
-    "lon": COORDINATES["long"],
-    #"q": "Imola",
-    "appid": API_KEY,
-    "units": UNITS
-}
+API_KEY = os.environ.get('WEATHER_API_KEY')
 
-response = requests.get(QUERY, parameters)
-#print(response.status_code)
+def get_weather_for_next_race():
+    """
+    Returns a dictionary with the current weather information for the next race
+    """
+    race_info = get_race_info()
 
-weather_info = response.json()
-#print(weather_info)
-#print(res_dict["weather"][0]["main"])
-print(json.dumps(weather_info, sort_keys=True, indent=4))
+    COORDINATES = race_info["race_location"]
+    UNITS = 'metric'
+    QUERY = 'https://api.openweathermap.org/data/3.0/onecall'
+
+    parameters = {
+        "lat": COORDINATES["lat"],
+        "lon": COORDINATES["long"],
+        "appid": API_KEY,
+        "units": UNITS
+    }
+
+    response = requests.get(QUERY, parameters).json()
+
+    weather_info = {
+        "current_weather_main": response["current"]["weather"][0]["main"],
+        "current_weather_description": response["current"]["weather"][0]["description"],
+        "current_weather_temp": response["current"]["temp"],
+        "current_weather_feels_like": response["current"]["feels_like"],
+        "current_weather_humidity": response["current"]["humidity"],
+        "current_weather_wind_speed": response["current"]["wind_speed"],
+        "is_it_raining": True if response["current"]["weather"][0]["main"] in ["Rain","Drizzle","Thunderstorm","Snow"] else False,
+        "weather_icon_url": "http://openweathermap.org/img/wn/" + response["current"]["weather"][0]["icon"] + ".png"
+    }
+
+    #print(json.dumps(weather_info, indent=2))
+
+    return weather_info
+

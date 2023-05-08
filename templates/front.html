@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
 
-{% block head %} 
+{% block head %}
 <title>F1 Weather</title>
 {% endblock %}
 
-
-{% block body %} 
+{% block body %}
 <ul id="menu">
     <!-- <li><img class="f1logo" src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-0.png" alt="F1 logo"></li>-->
-    <li><img class="f1logo" src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-5-3.png" alt="F1 logo"></li>
-    <li><h1> Formula 1 Weather</h1></li>
+    <li><img class="f1logo" src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-5-3.png"
+            alt="F1 logo"></li>
+    <li>
+        <h1> Formula 1 Weather</h1>
+    </li>
 </ul>
 
-The <i>{{data["race"]["race_name"]}}</i>  starts in 
-<br> 
-<b>{{data["race"]["time_to_race"]}}</b>
+The <i>{{data["race"]["race_name"]}}</i> starts in
 <br>
-The weather in <i>{{data["race"]["race_location"]["locality"]}}, {{data["race"]["race_location"]["country"]}} </i> is currently: 
+<b>{{time_to_race}}</b>
 <br>
-<!-- {{data["weather"]}} -->
-{{data["weather"]["weather"][0]["icon"]}}
-{{data["weather"]["weather"][0]["main"]}} with {{data["weather"]["weather"][0]["description"]}}
 <br>
-<img src="http://openweathermap.org/img/wn/02d@4x.png" alt="Current weather icon">
+The weather in <i>{{data["race"]["race_location"]["locality"]}}, {{data["race"]["race_location"]["country"]}} </i> is
+currently:
+<br>
+<br>
+<img src={{data["weather"]["weather_icon_url"]}} alt="Current weather icon">
+<br>
+{{data["weather"]["current_weather_main"]}} with {{data["weather"]["current_weather_main_description"]}}
 {% endblock %}
